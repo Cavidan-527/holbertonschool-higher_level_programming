@@ -9,12 +9,8 @@ import sys
 
 if __name__ == "__main__":
     url = sys.argv[1]
-    # Firewall-u keçmək üçün başlıq mütləqdir
     headers = {'cfclearance': 'true'}
-    
     response = requests.get(url, headers=headers)
-    # requests kitabxanasında başlıqları .headers.get() ilə çəkirik
     request_id = response.headers.get('X-Request-Id')
-    
     if request_id:
         print(request_id)
