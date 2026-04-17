@@ -42,7 +42,6 @@ def get_user(username):
 @app.route("/add_user", methods=["POST"])
 def add_user():
     """Parses JSON data and adds a new user to the dictionary."""
-    # JSON-un düzgünlüyünü yoxlayırıq
     data = request.get_json(silent=True)
     if data is None:
         return jsonify({"error": "Invalid JSON"}), 400
@@ -52,9 +51,9 @@ def add_user():
         return jsonify({"error": "Username is required"}), 400
 
     if username in users:
-        return jsonify({"error": "User already exists"}), 409
+        # Mesajı "Username already exists" olaraq dəyişdik
+        return jsonify({"error": "Username already exists"}), 409
 
-    # Yeni istifadəçini əlavə edirik
     users[username] = data
     response_data = {
         "message": "User added",
